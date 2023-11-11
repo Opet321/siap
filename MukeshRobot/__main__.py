@@ -32,9 +32,9 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
-from FallenRobot import pbot as Client 
-import FallenRobot.modules.sql.users_sql as sql
-from FallenRobot import (
+from MukeshRobot import pbot as Client 
+import MukeshRobot.modules.sql.users_sql as sql
+from MukeshRobot import (
     BOT_NAME,
     BOT_USERNAME,
     
@@ -56,9 +56,9 @@ from FallenRobot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from FallenRobot.modules import ALL_MODULES
-from FallenRobot.modules.helper_funcs.chat_status import is_user_admin
-from FallenRobot.modules.helper_funcs.misc import paginate_modules
+from MukeshRobot.modules import ALL_MODULES
+from MukeshRobot.modules.helper_funcs.chat_status import is_user_admin
+from MukeshRobot.modules.helper_funcs.misc import paginate_modules
 
 
 def get_readable_time(seconds: int) -> str:
