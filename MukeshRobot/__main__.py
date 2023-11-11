@@ -22,7 +22,6 @@ from telegram.error import (
     Unauthorized,
 )
 from telegram.ext import ( 
-    
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
@@ -37,11 +36,8 @@ import MukeshRobot.modules.sql.users_sql as sql
 from MukeshRobot import (
     BOT_NAME,
     BOT_USERNAME,
-    
-    
     LOGGER,
     OWNER_ID,
-    
     START_IMG,
     SUPPORT_CHAT,
     TOKEN,
