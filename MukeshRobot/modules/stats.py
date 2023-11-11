@@ -31,9 +31,9 @@ import time
 
 import psutil
 
-import FallenRobot.modules.sql.users_sql as sql
-from FallenRobot import BOT_NAME, StartTime
-from FallenRobot.modules.helper_funcs import formatter
+import MukeshRobot.modules.sql.users_sql as sql
+from MukeshRobot import BOT_NAME, StartTime
+from MukeshRobot.modules.helper_funcs import formatter
 
 # sᴛᴀᴛs ᴍᴏᴅᴜʟᴇ
 
