@@ -91,7 +91,7 @@ PM_START_TEX = """
 PM_START_TEXT = """
 *❏──────────────────────❏*
 *├ ʜᴇʏ* {} 👋 
-*├ ᴀsᴛʀᴏɴᴏᴛ*
+*├ ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼*
 *├ ᴜᴩᴛɪᴍᴇ* `{}`
 *├ ᴜsᴇʀs* `{}`
 *├ ᴄʜᴀᴛs* `{}`
@@ -708,35 +708,12 @@ def MukeshRobot_Main_Callback(update: Update, context: CallbackContext):
             ),
         )
                                             
-                        
-        
-def Sayang_kamu_callback(update: Update, context: CallbackContext):
-    query = update.callback_query        
-    if query.data == "sayang_":         
-        query.message.edit_caption(f"*🙈 ᴄᴏʟᴏɴɢ ᴋᴏɴᴛᴇɴ ᴘʀɪᴠᴀᴛᴇ*"
-           "\n\n*sᴜʙsᴄʀɪʙᴇ ᴄʜᴀɴɴᴇʟ sᴀʏᴀ , ᴀɢᴀʀ ʙᴏᴛ ɪɴɪ ᴅᴀᴘᴀᴛ ᴅɪɢᴜɴᴀᴋᴀɴ. ᴊɪᴋᴀ sᴜᴅᴀʜ sᴜʙsᴄʀɪʙᴇ ᴋɪʀɪᴍ ʟɪɴᴋ ᴋᴇ ʙᴏᴛ ɪɴɪ.*", 
-           parse_mode=ParseMode.MARKDOWN, 
-           reply_markup=InlineKeyboardMarkup( 
-               [ 
-                   [ 
-                       InlineKeyboardButton(
-                           text="sᴜᴘᴘᴏʀᴛ", url="http://t.me/yahkenatipu" 
-                       ),
-                       InlineKeyboardButton( 
-                           text="ᴄʜᴀɴɴᴇʟs", url="https://t.me/comfortzonechh"
-                       ),
-                   ],
-                   [
-                       InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="fallen_back"), 
-                   ],
-               ]
-           ),
-        )    
+                      
 def Fallen_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
     if query.data == "fallen_":
         query.message.edit_caption(f"*ʜᴇʏ,*👋"
-            "\n*ᴛʜɪs ɪs {BOT_NAME}*"
+            "\n*ᴛʜɪs ɪs ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼"
             "\n\n*❏ ɪꜰ ʏᴏᴜ ʟɪᴋᴇ ᴇɪᴋᴏ ᴀɴᴅ ᴡᴀɴᴛ ᴛᴏ*"
             "\n*╰ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴋᴇᴇᴘ ᴇɪᴋᴏ ᴀᴄᴛɪᴠᴇ*"
             "\n\n*❏ ʏᴏᴜ ᴄᴀɴ ᴅᴏɴᴀᴛᴇ ᴠɪᴀ ᴏᴠᴏ 087845681216*"
