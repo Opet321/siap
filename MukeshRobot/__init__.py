@@ -157,20 +157,6 @@ DEV_USERS.add(abs(0b101100001110010100011000111101001))
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("mukesh", API_ID, API_HASH)
 
-
-class Anony(Client):
-    def __init__(self):
-        super().__init__(
-            name="Anonymous",
-            api_id=config.API_ID,
-            api_hash=config.API_HASH,
-            lang_code="en",
-            bot_token=config.BOT_TOKEN,
-            in_memory=True,
-            parse_mode=ParseMode.HTML,
-        )
-
-
 pbot = Client("MukeshRobot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN,in_memory=True)
 dispatcher = updater.dispatcher
 aiohttpsession = ClientSession()
