@@ -211,10 +211,11 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name            
+            first_name = update.effective_user.first_name       
+            uptime = get_readable_time((time.time() - StartTime))
             update.effective_message.reply_photo(            
                 photo=START_IMG,
-                caption=PM_START_TEXT.format(escape_markdown(uptime), BOT_NAME,sql.num_users(), sql.num_chats()),
+                caption=PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(uptime), BOT_NAME,sql.num_users(), sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
