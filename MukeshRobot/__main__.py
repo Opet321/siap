@@ -182,7 +182,7 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-@pbot.on_callback_query(
+@Anony.on_callback_query(
     filters.regex(pattern=r"^(gensession|pyrogram|pyrogram1|telethon)$")
 )
 async def cb_choose(_, cq: CallbackQuery):
