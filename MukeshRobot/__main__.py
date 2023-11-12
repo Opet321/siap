@@ -13,7 +13,6 @@ from pyrogram.types import (
 )
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram import __version__ as telever  
-from MukeshRobot import Anony 
 from MukeshRobot.modules.gen import gen_session
 from MukeshRobot.modules.alive import gen_key
 from telegram.error import (
@@ -182,7 +181,7 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-@Anony.on_callback_query(
+@pbot.on_callback_query(
     filters.regex(pattern=r"^(gensession|pyrogram|pyrogram1|telethon)$")
 )
 async def cb_choose(_, cq: CallbackQuery):
