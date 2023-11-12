@@ -31,7 +31,7 @@ from telethon.sessions import StringSession
 from telethon.tl.functions.channels import JoinChannelRequest
 from pyromod.listen.listen import ListenerTimeout
 
-from config import OWNER_ID
+from MukeshRobot.config import OWNER_ID
 from MukeshRobot import Client
 from MukeshRobot.modules.alive import retry_key
 
