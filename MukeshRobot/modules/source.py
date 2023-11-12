@@ -3,7 +3,8 @@ from platform import python_version as y
 from pyrogram import __version__ as z
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram import __version__ as o
+from telegram import __version__ as o 
+from MukeshRobot import pbot as app
 from telethon import __version__ as s
 
 from MukeshRobot import OWNER_ID, dispatcher
@@ -12,7 +13,7 @@ from MukeshRobot import pbot as client
 Mukesh = "https://telegra.ph//file/a71668bdfd39522469163.jpg"
 
 
-@client.on_message(filters.command(["link"]))
+@app.on_message(filters.command(["link"]))
 async def tai_ya(_, message): 
     ajg = int(message.text.split(" ")[1]) 
     mmk = await app.export_chat_invite_link(ajg) 
