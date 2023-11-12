@@ -171,10 +171,8 @@ def info(update: Update, context: CallbackContext):
 
     if user_id:
         user = bot.get_chat(user_id)
-
     elif not message.reply_to_message and not args:
         user = message.from_user
-
     elif not message.reply_to_message and (
         not args
         or (
@@ -184,89 +182,42 @@ def info(update: Update, context: CallbackContext):
             and not message.parse_entities([MessageEntity.TEXT_MENTION])
         )
     ):
-        message.reply_text("ɪ ᴄᴀɴ'ᴛ ᴇxᴛʀᴀᴄᴛ ᴀ ᴜsᴇʀ ғʀᴏᴍ ᴛʜɪs")
+        message.reply_text("I can't extract a user from this.")
         return
-
     else:
         return
 
-    rep = message.reply_text("<code>ᴇxᴛʀᴀᴄᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ...</code>", parse_mode=ParseMode.HTML)
+    rep = message.reply_text("<code>processing</code>", parse_mode=ParseMode.HTML)
 
     text = (
-        f"ㅤ ㅤㅤ      ✦ ᴜsᴇʀ ɪɴғᴏ ✦\n•❅─────✧❅✦❅✧─────❅•\n"
-        f"➻ <b>ᴜsᴇʀ ɪᴅ:</b> <code>{user.id}</code>\n"
-        f"➻ <b>ғɪʀsᴛ ɴᴀᴍᴇ:</b> {html.escape(user.first_name)}"
+        f"User info\n"
+        f"<b>  ID:</b> <code>{user.id}</code>\n"
+        f"<b>  Name:</b> {html.escape(user.first_name)}"
     )
 
-    if user.last_name:
-        text += f"\n➻ <b>ʟᴀsᴛ ɴᴀᴍᴇ:</b> {html.escape(user.last_name)}"
-
     if user.username:
-        text += f"\n➻ <b>ᴜsᴇʀɴᴀᴍᴇ:</b> @{html.escape(user.username)}"
+        text += f"\n<b>  Username:</b> @{html.escape(user.username)}"
 
-    text += f"\n➻ <b>ʟɪɴᴋ:</b> {mention_html(user.id, 'link')}"
+    text += f"\n<b>  Mention:</b> {mention_html(user.id, 'link')}"
 
     if chat.type != "private" and user_id != bot.id:
-        _stext = "\n➻ <b>ᴩʀᴇsᴇɴᴄᴇ:</b> <code>{}</code>"
-
+        _stext = "\n  <b>Status:</b> <code>{}</code>" 
         status = status = bot.get_chat_member(chat.id, user.id).status
         if status:
             if status in {"left", "kicked"}:
-                text += _stext.format("ɴᴏᴛ ʜᴇʀᴇ")
+                text += _stext.format("Tidak diketahui")
             elif status == "member":
-                text += _stext.format("ᴅᴇᴛᴇᴄᴛᴇᴅ")
+                text += _stext.format("Terdeteksi")
             elif status in {"administrator", "creator"}:
-                text += _stext.format("ᴀᴅᴍɪɴ")
-    if user_id not in [bot.id, 777000, 1087968824]:
-        userhp = hpmanager(user)
-        text += f"\n\n<b>ʜᴇᴀʟᴛʜ:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]"
-
-    disaster_level_present = False
-
-    if user.id == OWNER_ID:
-        text += "\n\nᴛʜᴇ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ ᴛʜɪs ᴜsᴇʀ ɪs <b>ɢᴏᴅ</b>.\n"
-        disaster_level_present = True
-    elif user.id in DEV_USERS:
-        text += "\n\nᴛʜɪs ᴜsᴇʀ ɪs ᴀ ᴍᴇᴍʙᴇʀ ᴏғ <b>ᴍᴜᴋᴇsʜ ᴀssᴏᴄɪᴀᴛɪᴏɴ</b>.\n"
-        disaster_level_present = True
-    elif user.id in DRAGONS:
-        text += "\n\nᴛʜᴇ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ ᴛʜɪs ᴜsᴇʀ ɪs <b>ᴅʀᴀɢᴏɴ</b>.\n"
-        disaster_level_present = True
-    elif user.id in DEMONS:
-        text += "\n\nᴛʜᴇ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ ᴛʜɪs ᴜsᴇʀ ɪs <b>ᴅᴇᴍᴏɴ</b>.\n"
-        disaster_level_present = True
-    elif user.id in TIGERS:
-        text += "\n\nᴛʜᴇ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ ᴛʜɪs ᴜsᴇʀ ɪs <b>ᴛɪɢᴇʀ</b>.\n"
-        disaster_level_present = True
-    elif user.id in WOLVES:
-        text += "\n\nᴛʜᴇ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ ᴛʜɪs ᴜsᴇʀ ɪs <b>ᴡᴏʟғ</b>.\n"
-        disaster_level_present = True
-
-    if disaster_level_present:
-        text += ' \n[<a href="https://t.me/mukeshbotzone/26">ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴋɴᴏᴡ ᴡʜᴀᴛ ɪs ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟs.</a>]'.format(
-            bot.username
-        )
-
-    try:
-        user_member = chat.get_member(user.id)
-        if user_member.status == "administrator":
-            result = requests.post(
-                f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat.id}&user_id={user.id}"
-            )
-            result = result.json()["result"]
-            if "custom_title" in result.keys():
-                custom_title = result["custom_title"]
-                text += f"\n\nᴛɪᴛʟᴇ:\n<b>{custom_title}</b>"
-    except BadRequest:
-        pass
+                text += _stext.format("Admin") 
 
     for mod in USER_INFO:
         try:
-            mod_info = mod.__user_info__(user.id).strip()
+            mod_info = mod.__user_info__(user.id, chat.id)
         except TypeError:
-            mod_info = mod.__user_info__(user.id, chat.id).strip()
+            mod_info = mod.__user_info__(user.id)
         if mod_info:
-            text += "\n\n" + mod_info
+            text += "\n" + mod_info
 
     if INFOPIC:
         try:
@@ -277,57 +228,18 @@ def info(update: Update, context: CallbackContext):
             message.reply_photo(
                 photo=open(f"{user.id}.png", "rb"),
                 caption=(text),
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "ʜᴇᴀʟᴛʜ", url=f"https://t.me/mukeshbotzone/90"
-                            ),
-                            InlineKeyboardButton(
-                                "Dɪsᴀsᴛᴇʀ", url="https://t.me/mukeshbotzone/26"
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="➕ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ➕",
-                                url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                            ),
-                        ],
-                    ]
-                ),
                 parse_mode=ParseMode.HTML,
             )
 
             os.remove(f"{user.id}.png")
-        # Incase user don't have profile pic, send normal text
+        # In case the user doesn't have a profile picture, send normal text
         except IndexError:
             message.reply_text(
-                text,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "ʜᴇᴀʟᴛʜ", url="https://t.me/mukeshbotzone/90"
-                            ),
-                            InlineKeyboardButton(
-                                "ᴅɪsᴀsᴛᴇʀ", url="https://t.me/mukeshbotzone/26"
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="➕ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ➕",
-                                url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                            ),
-                        ],
-                    ]
-                ),
-                parse_mode=ParseMode.HTML,
-                disable_web_page_preview=True,
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
             )
     else:
         message.reply_text(
-            text,
-            parse_mode=ParseMode.HTML,
+            text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
         )
 
     rep.delete()
