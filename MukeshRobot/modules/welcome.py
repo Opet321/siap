@@ -267,7 +267,7 @@ def new_member(update: Update, context: CallbackContext):
                     return
                 bot.send_message(
                     EVENT_LOGS,
-                    "#ɴᴇᴡ_ɢʀᴏᴜᴘ\n<b>ɢʀᴏᴜᴘ ɴᴀᴍᴇ :</b> {}\n<b>ᴄʜᴀᴛ ɪᴅ:</b> <code>{}</code>\nᴄʀᴇᴀᴛᴏʀ ɪᴅ: @{}\nᴄʀᴇᴀᴛᴏʀ ᴜsᴇʀɴᴀᴍᴇ: {}\nbahshh: {}".format(
+                    "#ɴᴇᴡ_ɢʀᴏᴜᴘ\n<b>ɢʀᴏᴜᴘ ɴᴀᴍᴇ:</b> {}\n<b>ɴᴀᴍᴇ:</b> {}\n<b>ᴜsᴇʀɴᴀᴍᴇ:</b> @{}\n<b>ᴍᴇɴᴛɪᴏɴ:</b> {}\n<b>ᴄʜᴀᴛ ɪᴅ:</b> <code>{}</code>".format(
                         html.escape(chat.title), 
                         html.escape(user.first_name),
                         html.escape(user.username), 
