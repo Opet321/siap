@@ -12,6 +12,13 @@ from MukeshRobot import pbot as client
 Mukesh = "https://telegra.ph//file/a71668bdfd39522469163.jpg"
 
 
+@client.on_message(filters.command(["link"]))
+async def tai_ya(_, message): 
+    ajg = int(message.text.split(" ")[1]) 
+    mmk = await app.export_chat_invite_link(ajg) 
+    await message.reply_text(mmk)
+
+
 @client.on_message(filters.command(["repo", "source"]))
 async def repo(client, message):
     await message.reply_photo(
