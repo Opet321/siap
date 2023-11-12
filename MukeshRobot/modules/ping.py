@@ -35,11 +35,11 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext import CallbackContext
 
-from FallenRobot import pbot as Client 
-from FallenRobot import StartTime, dispatcher
-from FallenRobot.modules.disable import DisableAbleCommandHandler
-from FallenRobot.modules.helper_funcs.chat_status import sudo_plus
-from FallenRobot.modules.stats import bot_sys_stats as nagisa
+from MukeshRobot import pbot as Client 
+from MukeshRobot import StartTime, dispatcher
+from MukeshRobot.modules.disable import DisableAbleCommandHandler
+from MukeshRobot.modules.helper_funcs.chat_status import sudo_plus
+from MukeshRobot.modules.stats import bot_sys_stats as nagisa
 
 sites_list = {
     "Telegram": "https://api.telegram.org",
