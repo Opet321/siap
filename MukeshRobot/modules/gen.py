@@ -32,8 +32,8 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from pyromod.listen.listen import ListenerTimeout
 
 from config import SUPPORT_CHAT
-from StringGen import Anony
-from StringGen.utils import retry_key
+from MukeshRobot import Client
+from MukeshRobot.modules.alive import retry_key
 
 
 async def gen_session(
@@ -231,7 +231,7 @@ async def gen_session(
                 link_preview=False,
                 parse_mode="html",
             )
-            await client(JoinChannelRequest("@FallenAssociation"))
+            await client(JoinChannelRequest("@xnouser"))
         else:
             string_session = await client.export_session_string()
             await client.send_message(
@@ -239,7 +239,7 @@ async def gen_session(
                 txt.format(ty, string_session, SUPPORT_CHAT),
                 disable_web_page_preview=True,
             )
-            await client.join_chat("FallenAssociation")
+            await client.join_chat("xnouser")
     except KeyError:
         pass
     try:
