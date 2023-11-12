@@ -31,7 +31,7 @@ import time
 
 import psutil
 
-import MukeshRobot.modules.no_sql.users_sql as sql
+import MukeshRobot.modules.no_sql.users_db as sql
 from MukeshRobot import BOT_NAME, StartTime
 from MukeshRobot.modules.helper_funcs import formatter
 
