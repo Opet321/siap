@@ -87,7 +87,7 @@ PM_START_TEX = """
 PM_START_TEXT = """
 *❏──────────────────────❏*
 *├ ʜᴇʏ* {} 👋 
-*├ ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼*
+*├ ɴᴀᴛᴀɴ ꭙ ʙσᴛ*
 *├ ᴜᴩᴛɪᴍᴇ* `{}`
 *├ ᴜsᴇʀs* `{}`
 *├ ᴄʜᴀᴛs* `{}`
@@ -695,7 +695,7 @@ def Fallen_about_callback(update: Update, context: CallbackContext):
     query = update.callback_query
     if query.data == "fallen_":
         query.message.edit_caption(f"*ʜᴇʏ,*👋"
-            "\n*ᴛʜɪs ɪs ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼"
+            "\n*ᴛʜɪs ɪs ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼*"
             "\n\n*❏ ɪꜰ ʏᴏᴜ ʟɪᴋᴇ ᴇɪᴋᴏ ᴀɴᴅ ᴡᴀɴᴛ ᴛᴏ*"
             "\n*╰ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴋᴇᴇᴘ ᴇɪᴋᴏ ᴀᴄᴛɪᴠᴇ*"
             "\n\n*❏ ʏᴏᴜ ᴄᴀɴ ᴅᴏɴᴀᴛᴇ ᴠɪᴀ ᴏᴠᴏ 087845681216*"
