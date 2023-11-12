@@ -1067,9 +1067,6 @@ def main():
     about_callback_handler = CallbackQueryHandler(
         Fallen_about_callback, pattern=r"fallen_", run_async=True
     )
-    kamu_callback_handler = CallbackQueryHandler(
-        Sayang_kamu_callback, pattern=r"sayang_", run_async=True
-    )
     lo_callback_handler = CallbackQueryHandler(
         Bacot_lo_callback, pattern=r"berak_", run_async=True
     )
@@ -1134,7 +1131,6 @@ def main():
     dispatcher.add_handler(mukeshrobot_main_handler)
     dispatcher.add_handler(sabi_callback_handler)
     dispatcher.add_handler(about_callback_handler)               
-    dispatcher.add_handler(kamu_callback_handler)
     dispatcher.add_handler(ngontol_callback_handler)
     dispatcher.add_handler(source_callback_handler)
     dispatcher.add_handler(settings_handler)
