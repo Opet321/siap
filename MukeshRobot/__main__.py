@@ -2,17 +2,19 @@ import importlib
 import re
 import time
 from platform import python_version as y
-from sys import argv
+from sys import argv 
 from typing import Optional
 
-from pyrogram import __version__ as pyrover  
+from pyrogram import __version__ as pyrover   
+from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import (
     CallbackQuery,
     Message,
 )
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram import __version__ as telever
+from telegram import __version__ as telever 
+from MukeshRobot.modules.alive import gen_key
 from telegram.error import (
     BadRequest,
     ChatMigrated,
@@ -177,6 +179,29 @@ def send_help(chat_id, text, keyboard=None):
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=keyboard,
     )
+
+
+@Client.on_callback_query(
+    filters.regex(pattern=r"^(gensession|pyrogram|pyrogram1|telethon)$")
+)
+async def cb_choose(_, cq: CallbackQuery):
+    await cq.answer()
+    query = cq.matches[0].group(1)
+    if query == "gensession":
+        return await cq.message.reply_text(
+            text="<b>» ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ғᴏʀ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ :</b>",
+            reply_markup=gen_key,
+        )
+    elif query.startswith("pyrogram") or query.startswith("telethon"):
+        try:
+            if query == "pyrogram":
+                await gen_session(cq.message, cq.from_user.id)
+            elif query == "pyrogram1":
+                await gen_session(cq.message, cq.from_user.id, old_pyro=True)
+            elif query == "telethon":
+                await gen_session(cq.message, cq.from_user.id, telethon=True)
+        except Exception as e:
+            await cq.edit_message_text(e, disable_web_page_preview=True)
 
 
 def start(update: Update, context: CallbackContext):
@@ -680,7 +705,7 @@ def MukeshRobot_Main_Callback(update: Update, context: CallbackContext):
                             text="ᴅᴏɴᴀᴛᴇ", callback_data="fallen_"
                         ),
                         InlineKeyboardButton(
-                            text="sᴛᴀᴛs", callback_data="stats_callback" 
+                            text="sᴛʀɪɴɢ", callback_data="gensession" 
                         ), 
                     ], 
                     [ 
