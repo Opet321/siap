@@ -32,7 +32,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from pyromod.listen.listen import ListenerTimeout
 
 from MukeshRobot import OWNER_ID
-from MukeshRobot import pbot as Client
+from MukeshRobot import pbot
 from MukeshRobot.modules.alive import retry_key
 
 
