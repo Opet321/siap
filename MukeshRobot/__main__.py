@@ -6,14 +6,14 @@ from sys import argv
 from typing import Optional
 
 from pyrogram import __version__ as pyrover   
-from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import (
     CallbackQuery,
     Message,
 )
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram import __version__ as telever 
+from telegram import __version__ as telever  
+from MukeshRobot import Anony
 from MukeshRobot.modules.alive import gen_key
 from telegram.error import (
     BadRequest,
@@ -181,7 +181,7 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-@Client.on_callback_query(
+@pbot.on_callback_query(
     filters.regex(pattern=r"^(gensession|pyrogram|pyrogram1|telethon)$")
 )
 async def cb_choose(_, cq: CallbackQuery):
