@@ -2,7 +2,8 @@ import asyncio
 from platform import python_version as pyver
 
 from pyrogram import __version__ as pver
-from pyrogram import filters
+from pyrogram import filters 
+from config import SUPPORT_CHAT
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from telegram import __version__ as lver
 from telethon import __version__ as tver
@@ -66,3 +67,31 @@ async def restart(client, m: Message):
    ━━━━━━━━━━━━━━━━━━━""",
         reply_markup=InlineKeyboardMarkup(Mukesh),
     )
+
+
+
+keyboard = InlineKeyboardMarkup(
+    [
+        [InlineKeyboardButton(text="ɢᴇɴᴇʀᴀᴛᴇ sᴇssɪᴏɴ", callback_data="gensession")],
+        [
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url="https://t.me/xnouser"),
+            InlineKeyboardButton(
+                text="sᴏᴜʀᴄᴇ", url="https://github.com/AnonymousX1025/StringGenBot"
+            ),
+        ],
+    ]
+)
+
+gen_key = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(text="ᴩʏʀᴏɢʀᴀᴍ v1", callback_data="pyrogram1"),
+            InlineKeyboardButton(text="ᴩʏʀᴏɢʀᴀᴍ v2", callback_data="pyrogram"),
+        ],
+        [InlineKeyboardButton(text="ᴛᴇʟᴇᴛʜᴏɴ", callback_data="telethon")],
+    ]
+)
+
+retry_key = InlineKeyboardMarkup(
+    [[InlineKeyboardButton(text="ᴛʀʏ ᴀɢᴀɪɴ", callback_data="gensession")]]
+)
