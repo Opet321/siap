@@ -27,7 +27,7 @@ import asyncio
 from pyrogram import *
 from pyrogram.raw.types import *
 from pyrogram.errors.exceptions.flood_420 import FloodWait
-from FallenRobot import pbot
+from MukeshRobot import pbot
 from pyrogram import filters
 
 import logging
