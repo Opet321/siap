@@ -32,7 +32,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from pyromod.listen.listen import ListenerTimeout
 
 from MukeshRobot import OWNER_ID
-from MukeshRobot import Client
+from MukeshRobot import pbot as Client
 from MukeshRobot.modules.alive import retry_key
 
 
@@ -49,14 +49,14 @@ async def gen_session(
     await message.reply_text(f"» ᴛʀʏɪɴɢ ᴛᴏ sᴛᴀʀᴛ {ty} sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ...")
 
     try:
-        api_id = await Client.ask(
+        api_id = await pbot.ask(
             identifier=(message.chat.id, user_id, None),
             text="» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴀᴘɪ ɪᴅ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛɪᴍᴇᴅ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
@@ -68,21 +68,21 @@ async def gen_session(
     try:
         api_id = int(api_id.text)
     except ValueError:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛʜᴇ ᴀᴘɪ ɪᴅ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
 
     try:
-        api_hash = await Client.ask(
+        api_hash = await pbot.ask(
             identifier=(message.chat.id, user_id, None),
             text="» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴀᴘɪ ʜᴀsʜ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛɪᴍᴇᴅ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
@@ -94,21 +94,21 @@ async def gen_session(
     api_hash = api_hash.text
 
     if len(api_hash) < 30:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛʜᴇ ᴀᴘɪ ʜᴀsʜ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
 
     try:
-        phone_number = await Client.ask(
+        phone_number = await pbot.ask(
             identifier=(message.chat.id, user_id, None),
             text="» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :",
             filters=filters.text,
             timeout=300,
         )
     except ListenerTimeout:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛɪᴍᴇᴅ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
@@ -124,7 +124,7 @@ async def gen_session(
     elif old_pyro:
         client = Client1(":memory:", api_id=api_id, api_hash=api_hash)
     else:
-        client = Client(name="Client", api_id=api_id, api_hash=api_hash, in_memory=True)
+        client = Client(name="pbot", api_id=api_id, api_hash=api_hash, in_memory=True)
     await client.connect()
 
     try:
@@ -135,26 +135,26 @@ async def gen_session(
         await asyncio.sleep(1)
 
     except FloodWait as f:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             f"» ғᴀɪʟᴇᴅ ᴛᴏ sᴇɴᴅ ᴄᴏᴅᴇ ғᴏʀ ʟᴏɢɪɴ.\n\nᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ {f.value or f.x} sᴇᴄᴏɴᴅs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
     except (ApiIdInvalid, ApiIdInvalidError, ApiIdInvalid1):
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴀᴘɪ ɪᴅ ᴏʀ ᴀᴘɪ ʜᴀsʜ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
     except (PhoneNumberInvalid, PhoneNumberInvalidError, PhoneNumberInvalid1):
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
 
     try:
-        otp = await Client.ask(
+        otp = await pbot.ask(
             identifier=(message.chat.id, user_id, None),
             text=f"ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ᴛʜᴇ ᴏᴛᴘ sᴇɴᴛ ᴛᴏ {phone_number}.\n\nɪғ ᴏᴛᴩ ɪs <code>12345</code>, ᴩʟᴇᴀsᴇ sᴇɴᴅ ɪᴛ ᴀs <code>1 2 3 4 5.</code>",
             filters=filters.text,
@@ -163,7 +163,7 @@ async def gen_session(
         if await cancelled(otp):
             return
     except ListenerTimeout:
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 10 ᴍɪɴᴜᴛᴇs.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
@@ -176,27 +176,27 @@ async def gen_session(
         else:
             await client.sign_in(phone_number, code.phone_code_hash, otp)
     except (PhoneCodeInvalid, PhoneCodeInvalidError, PhoneCodeInvalid1):
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs <b>ᴡʀᴏɴɢ.</b>\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
     except (PhoneCodeExpired, PhoneCodeExpiredError, PhoneCodeExpired1):
-        return await Client.send_message(
+        return await pbot.send_message(
             user_id,
             "» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs <b>ᴇxᴩɪʀᴇᴅ.</b>\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
             reply_markup=retry_key,
         )
     except (SessionPasswordNeeded, SessionPasswordNeededError, SessionPasswordNeeded1):
         try:
-            pwd = await Client.ask(
+            pwd = await pbot.ask(
                 identifier=(message.chat.id, user_id, None),
                 text="» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴛᴡᴏ sᴛᴇᴘ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴘᴀssᴡᴏʀᴅ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ :",
                 filters=filters.text,
                 timeout=300,
             )
         except ListenerTimeout:
-            return Client.send_message(
+            return pbot.send_message(
                 user_id,
                 "» ᴛɪᴍᴇᴅ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.",
                 reply_markup=retry_key,
@@ -244,7 +244,7 @@ async def gen_session(
         pass
     try:
         await client.disconnect()
-        await Client.send_message(
+        await pbot.send_message(
             chat_id=user_id,
             text=f"sᴜᴄᴄᴇssғᴜʟʟʏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʏᴏᴜʀ {ty} sᴛʀɪɴɢ sᴇssɪᴏɴ.\n\nᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ғᴏʀ ɢᴇᴛᴛɪɴɢ ɪᴛ.\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={OWNER_ID}>ғᴀʟʟᴇɴ ᴀssᴏᴄɪᴀᴛɪᴏɴ</a>.",
             reply_markup=InlineKeyboardMarkup(
