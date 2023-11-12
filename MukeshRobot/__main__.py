@@ -34,7 +34,7 @@ from telegram.ext.dispatcher import DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
 from MukeshRobot import pbot as Client 
-import MukeshRobot.modules.sql.users_sql as sql
+import MukeshRobot.modules.no_sql.users_db as sql
 from MukeshRobot import (
     BOT_NAME,
     BOT_USERNAME,
@@ -43,8 +43,6 @@ from MukeshRobot import (
     START_IMG,
     SUPPORT_CHAT,
     TOKEN,
-    
-    
     StartTime,
     dispatcher,
     pbot,
