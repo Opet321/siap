@@ -215,7 +215,7 @@ def start(update: Update, context: CallbackContext):
             uptime = get_readable_time((time.time() - StartTime))
             update.effective_message.reply_photo(            
                 photo=START_IMG,
-                caption=PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(uptime), BOT_NAME,sql.num_users(), sql.num_chats()),
+                caption=PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(uptime), sql.num_users(), sql.num_chats()),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
