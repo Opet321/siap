@@ -13,7 +13,8 @@ from pyrogram.types import (
 )
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram import __version__ as telever  
-from MukeshRobot import Anony
+from MukeshRobot import Anony 
+from MukeshRobot.modules.gen import gen_session
 from MukeshRobot.modules.alive import gen_key
 from telegram.error import (
     BadRequest,
