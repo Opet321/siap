@@ -659,7 +659,7 @@ def MukeshRobot_Main_Callback(update: Update, context: CallbackContext):
     query = update.callback_query 
     if query.data == "Main_help": 
         uptime = get_readable_time((time.time() - StartTime)) 
-        query.message.edit_caption(f"*❏ ˹ɴᴀᴛᴀɴ ꭙ ʙσᴛ˼ ʜᴇʟᴘ ᴍᴇɴᴜ*"
+        query.message.edit_caption(f"*❏ ɴᴀᴛᴀɴ ʜᴇʟᴘ ᴍᴇɴᴜ*"
             "\n*├ sᴇʟᴇᴄᴛ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴛʜᴇ*"
             "\n*├ ʜᴇʟᴘ ᴍᴀɴᴀɢᴇ ᴀɴᴅ ᴍᴜsɪᴄ ᴄᴏᴍᴍᴀɴᴅs*"
             "\n*╰ /bug : ᴛᴏ ʀᴇᴘᴏʀᴛ ᴀɴ ᴇʀʀᴏʀ ᴘʀᴏʙʟᴇᴍ*",
